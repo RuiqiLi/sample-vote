@@ -1,0 +1,14 @@
+/* 让container组件中的内容垂直居中 */
+.container {
+  display: flex;            /* 使用flex布局 */
+  flex-direction: column;   /* 设置布局方向为纵向 */
+  justify-content: center;  /* 在布局方向上居中 */
+}
+.btn {
+  margin: 20rpx;                /* 设置按钮外边距 */
+  padding: 10rpx;               /* 设置按钮内边距 */
+  border: 1rpx solid #26AB28; /* 设置按钮边框 */
+  border-radius: 20rpx;         /* 设置按钮边框四个角的圆角半径 */
+  text-align: center;           /* 设置按钮内容居中 */
+  color: #26AB28;             /* 设置按钮文字颜色 */
+}
