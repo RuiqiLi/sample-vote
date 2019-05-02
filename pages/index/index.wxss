@@ -1,9 +1,10 @@
-/* 让container组件中的内容垂直居中 */
+/* 为class为container的组件添加样式 */
 .container {
-  display: flex;            /* 使用flex布局 */
-  flex-direction: column;   /* 设置布局方向为纵向 */
-  justify-content: center;  /* 在布局方向上居中 */
+  display: flex;                /* 使用flex布局 */
+  flex-direction: column;       /* 设置布局方向为纵向 */
+  justify-content: center;      /* 在布局方向上居中 */
 }
+/* 为class为btn的组件添加样式 */
 .btn {
   margin: 20rpx;                /* 设置按钮外边距 */
   padding: 10rpx;               /* 设置按钮内边距 */
@@ -11,4 +12,17 @@
   border-radius: 20rpx;         /* 设置按钮边框四个角的圆角半径 */
   text-align: center;           /* 设置按钮内容居中 */
   color: #26AB28;             /* 设置按钮文字颜色 */
+  display: flex;                /* 使用flex布局，布局方向默认为横向 */
+  justify-content: center;      /* 在布局方向上居中 */
+  align-items: center;          /* 在布局方向的垂直方向上居中 */
+}
+/* 为class为btn-img的组件添加样式 */
+.btn-img {
+  width: 50rpx;                 /* 设置图片宽度 */
+  margin-right: 30rpx;          /* 设置图片右侧边距 */
+}
+/* 为class为btn-desc的组件添加样式 */
+.btn-desc {
+  font-size: 10pt;              /* 设置字体大小 */
+  margin-left: 25rpx;           /* 设置左侧边距 */
 }

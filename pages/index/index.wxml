@@ -1,6 +1,13 @@
 <!-- 一般每个页面的最外层都用一个view组件包起来 -->
-<!-- 最外层的view -->
 <view class="container">
-  <view class="btn">单选投票</view>
-  <view class="btn">多选投票</view>
+  <view class="btn">
+    <image class="btn-img" src="/imgs/btn-img1.png" mode="widthFix" />
+    <text class="btn-txt">单选投票</text>
+    <text class="btn-desc">创建一个单选投票</text>
+  </view>
+  <view class="btn">
+    <image class="btn-img" src="/imgs/btn-img2.png" mode="widthFix" />
+    <text class="btn-txt">多选投票</text>
+    <text class="btn-desc">创建一个多选投票</text>
+  </view>
 </view>
