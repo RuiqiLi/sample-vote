@@ -1,0 +1,71 @@
+.container {
+  padding: 30rpx; /* 设置内边距为30rpx */
+  box-sizing: border-box; /* 设置盒模型宽度和高度的计算方式为border-box */
+}
+.form-title {
+  color: #333; /* 设置标题输入框字体颜色 */
+  font-weight: bold; /* 设置标题输入框字体加粗 */
+  font-size: 20pt; /* 设置标题输入框字体大小为20pt */
+  height: 24pt; /* 设置标题输入框高度为24pt，输入框一般要比字体大小高一些 */
+  border-bottom: 1rpx solid #eee; /* 为标题输入框增加一个下边框*/
+  padding: 10rpx 0; /* 设置标题输入框的上、下内边距为10rpx，让文字和下边框分开一段距离 */
+  box-sizing: content-box; /* 设置标题输入框的盒模型宽度和高度的计算方式为content-box */
+}
+.form-title-placeholder {
+  color: #ccc; /* 设置标题输入框placeholder的字体颜色 */
+}
+.form-desc {
+  margin-top: 40rpx; /* 设置输入框的上外边距为40rpx，让它和上面的input组件分开一段距离 */
+  width: 100%; /* 设置输入框的宽度为100%（input组件默认就是100%，因此不用设置） */
+  color: #333; /* 设置输入框字体颜色 */
+  font-size: 14pt; /* 设置输入框字体大小为14pt */
+  border-bottom: 1rpx solid #eee; /* 为输入框增加一个下边框*/
+  padding: 20rpx 0; /* 设置输入框的上、下内边距为20rpx，让文字和边框分开一段距离 */
+  box-sizing: content-box; /* 设置输入框的盒模型宽度和高度的计算方式为content-box */
+}
+.form-text-placeholder {
+  color: #ccc; /* 设置输入框placeholder的字体颜色 */
+}
+.btn-add-option {
+  font-size: 12pt;
+  color: #26AB28;
+  padding: 40rpx 0;
+}
+.form-option {
+  margin-top: 20rpx;
+  display: flex; /* 设置为flex布局，保持默认的横向布局 */
+  justify-content: space-between; /* 主轴方向的对齐方式使用space-between */
+  align-items: center; /* 交叉轴上的对齐方式使用center */
+}
+.form-input-wrapper {
+  color: #333;
+  font-size: 12pt;
+  border-bottom: 1rpx solid #eee;
+  padding: 20rpx 0;
+  flex: 1; /* 设置扩展到最大长度 */
+}
+.del-btn {
+  margin-right: 20rpx; /* 与右侧input保持一定距离 */
+}
+.form-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+  padding: 20rpx 0;
+  margin-top: 20rpx;
+}
+.form-item-label {
+  font-size: 12pt;
+  color: #333;
+}
+.form-item-picker {
+  font-size: 12pt;
+  color: #999;
+}
+.form-btn-group {
+  padding: 40rpx 0;
+}
+.form-btn {
+  margin-top: 20rpx;
+}

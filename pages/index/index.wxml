@@ -1,6 +1,6 @@
 <!-- 一般每个页面的最外层都用一个view组件包起来 -->
 <view class="container">
-  <view class="btn">
+  <view class="btn" bindtap="onTapCreateRadioVote">
     <image class="btn-img" src="/imgs/btn-img1.png" mode="widthFix" />
     <text class="btn-txt">单选投票</text>
     <text class="btn-desc">创建一个单选投票</text>
