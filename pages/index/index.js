@@ -4,7 +4,12 @@ Page({
   },
   onTapCreateRadioVote() {
     wx.navigateTo({
-      url: '/pages/createVote/createRadioVote'
+      url: '/pages/createVote/createVote?type=radio'
+    })
+  },
+  onTapCreateMultiChoiceVote() {
+    wx.navigateTo({
+      url: '/pages/createVote/createVote?type=multiple'
     })
   }
 })

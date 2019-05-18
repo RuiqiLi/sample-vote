@@ -5,7 +5,7 @@
     <text class="btn-txt">单选投票</text>
     <text class="btn-desc">创建一个单选投票</text>
   </view>
-  <view class="btn">
+  <view class="btn" bindtap="onTapCreateMultiChoiceVote">
     <image class="btn-img" src="/imgs/btn-img2.png" mode="widthFix" />
     <text class="btn-txt">多选投票</text>
     <text class="btn-desc">创建一个多选投票</text>
