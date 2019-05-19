@@ -39,13 +39,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "创建投票页面",
-					"pathName": "pages/createVote/createRadioVote",
-					"query": "",
+					"pathName": "pages/createVote/createVote",
+					"query": "type=multiple",
 					"scene": null
 				},
 				{
@@ -53,6 +53,13 @@
 					"name": "参与投票页面",
 					"pathName": "pages/vote/vote",
 					"query": "voteID=test",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的投票页面",
+					"pathName": "pages/myVote/myVote",
+					"query": "",
 					"scene": null
 				}
 			]

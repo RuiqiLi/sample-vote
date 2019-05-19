@@ -1,0 +1,6 @@
+.vote {
+  margin: 20rpx;
+  padding: 24rpx;
+  background: #eee;
+  border-bottom: 1rpx solid #fff;
+}

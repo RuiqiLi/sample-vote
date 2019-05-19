@@ -3,13 +3,27 @@
     "pages/index/index",
     "pages/createVote/createRadioVote",
     "pages/createVote/createVote",
-    "pages/vote/vote"
+    "pages/vote/vote",
+    "pages/myVote/myVote"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "投票小程序",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#26AB28",
+    "backgroundColor": "#eee",
+    "borderStyle": "white",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "新建"
+    }, {
+      "pagePath": "pages/myVote/myVote",
+      "text": "我的"
+    }]
   },
   "sitemapLocation": "sitemap.json"
 }
