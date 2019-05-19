@@ -10,14 +10,14 @@ Page({
   },
   onLoad(options) {
     if (options.type === 'radio') {
-      wx.setNavigationBarTitle({ // 动态改变标题栏文字
+      wx.setNavigationBarTitle({ // 动态改变导航栏文字
         title: '创建单选投票'
       })
     } else if (options.type === 'multiple') {
       this.setData({ // 修改投票类型为多选
         multiple: true
       })
-      wx.setNavigationBarTitle({ // 动态改变标题栏文字
+      wx.setNavigationBarTitle({ // 动态改变导航栏文字
         title: '创建多选投票'
       })
     } else { // 参数异常的情况，对每个分支都进行判断是个好习惯
@@ -79,6 +79,10 @@ Page({
       isAnonymous: this.data.isAnonymous
     }
     // TODO 将formData提交到云端
+    const voteID = 'test'; // 伪造一个数据，作为服务端返回的投票ID
+    wx.redirectTo({
+      url: '/pages/vote/vote?voteID=' + voteID,
+    })
   },
   formReset() {
     const now = new Date()

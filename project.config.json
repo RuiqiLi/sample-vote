@@ -39,12 +39,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "创建投票页面",
 					"pathName": "pages/createVote/createRadioVote",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "参与投票页面",
+					"pathName": "pages/vote/vote",
+					"query": "voteID=test",
 					"scene": null
 				}
 			]

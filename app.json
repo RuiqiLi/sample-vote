@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/createVote/createRadioVote",
-    "pages/createVote/createVote"
+    "pages/createVote/createVote",
+    "pages/vote/vote"
   ],
   "window": {
     "backgroundTextStyle": "light",

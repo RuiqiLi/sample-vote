@@ -1,0 +1,37 @@
+<view class="container">
+  <view class="title">{{voteTitle}}</view>
+  <view class="desc">
+    {{voteDesc}}
+    <text class="multiple-radio">[{{multiple ? '多选' : '单选'}}]</text>
+    <text class="type">[{{isAnonymous ? '匿名' : '实名'}}]</text>
+  </view>
+  <view wx:if="{{voteStatus.alreadyVoted}}" class="option-list">
+    <view class="option" wx:for="{{optionList}}">
+      <text>{{item}}</text>
+      <text class="vote-count">（{{voteStatus.optionStatus[index].count}} / {{voteStatus.totalVoteCount}} 票）</text>
+      <text class="vote-picked" wx:if="{{voteStatus.optionStatus[index].vote}}">[已选]</text>
+    </view>
+  </view>
+  <block wx:else>
+    <checkbox-group wx:if="{{multiple}}" class="option-list" bindchange="onPickOption">
+      <view class="option" wx:for="{{optionList}}">
+        <label>
+          <checkbox value="{{index}}" disabled="{{isExpired}}" />{{item}}
+        </label>
+      </view>
+    </checkbox-group>
+    <radio-group wx:else class="option-list" bindchange="onPickOption">
+      <view class="option" wx:for="{{optionList}}">
+        <label>
+          <radio value="{{index}}" disabled="{{isExpired}}" />{{item}}
+        </label>
+      </view>
+    </radio-group>
+  </block>
+  <view class="end-date">
+    截止日期：{{endDate}}
+    <text class="expired" hidden="{{!isExpired}}">[已过期]</text>
+  </view>
+  <button open-type="getUserInfo" class="btn" type="primary" disabled="{{isExpired || pickedOption.length === 0}}" bindtap="onTapVote" wx:if="{{!voteStatus.alreadyVoted}}">确认投票</button>
+  <button open-type="share" plain class="share">分享投票</button>
+</view>

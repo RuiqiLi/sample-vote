@@ -1,0 +1,48 @@
+.container {
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.title {
+  color: #333;
+  font-weight: bold;
+  font-size: 20pt;
+}
+.desc {
+  font-size: 14pt;
+  margin-top: 40rpx;
+}
+.multiple-radio {
+  margin-left: 10rpx;
+  color: #09BB07;
+}
+.type {
+  margin-left: 10rpx;
+  color: #ccc;
+}
+.option-list {
+  margin-top: 40rpx;
+}
+.option {
+  margin-top: 10rpx;
+}
+.end-date {
+  margin-top: 40rpx;
+  font-size: 12pt;
+  color: #ccc;
+}
+.expired {
+  margin-left: 10rpx;
+  color: #CE3C39;
+}
+.btn {
+  margin-top: 40rpx;
+}
+.share {
+  margin-top: 20rpx;
+}
+.vote-count {
+  color: #ccc;
+}
+.vote-picked {
+  color: #09BB07;
+}
