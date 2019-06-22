@@ -7,19 +7,19 @@ Page({
     this.getMyVoteListFromServer() // 从服务端获取数据
   },
   getMyVoteListFromServer() {
-    // TODO 当前使用伪造的数据，后面使用云开发技术从服务端获取数据
-    const voteList = [{
-      id: 'test',
-      title: '测试投票1',
-    }, {
-      id: 'test',
-      title: '测试投票2',
-    }, {
-      id: 'test',
-      title: '测试投票3',
-    }]
-    this.setData({
-      voteList
+    wx.cloud.callFunction({
+      name: 'myVoteList'
+    }).then(res => {
+      console.log(res)
+      this.setData({
+        voteList: res.result.data
+      })
+    }).catch(res => {
+      console.error(res)
+      wx.showToast({
+        title: '获取数据失败',
+        icon: 'none'
+      })
     })
   },
   onTapVote(e) {

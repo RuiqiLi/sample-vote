@@ -1,5 +1,5 @@
 <view class="container">
   <block wx:for="{{voteList}}">
-  <view class="vote" bindtap="onTapVote" data-vote-id="{{item.id}}">{{item.title}}</view>
+  <view class="vote" bindtap="onTapVote" data-vote-id="{{item._id}}">{{item.voteTitle}}</view>
   </block>
 </view>

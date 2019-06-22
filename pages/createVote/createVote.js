@@ -69,19 +69,55 @@ Page({
       isAnonymous: e.detail.value
     })
   },
+  // 校验表单数据是否完整，如果校验通过就返回null，否则返回需要提示的文字
+  checkFormValid() {
+    if (!this.data.formTitle) {
+      return '标题不能为空'
+    }
+    if (this.data.optionList.length < 2) {
+      return '至少需要2个选项'
+    }
+    for (let i = 0; i < this.data.optionList.length; i++) {
+      if (!this.data.optionList[i]) {
+        return '选项不能为空'
+      }
+    }
+    return null
+  },
   formSubmit() {
-    const formData = {
-      multiple: this.data.multiple, // 投票类型也要传递给服务端
-      formTitle: this.data.formTitle,
-      formDesc: this.data.formDesc,
+    // 提交前需要先对表单内容进行校验
+    const msg = this.checkFormValid()
+    if (msg) {        // 在if判断时，null会被转换为false
+      wx.showToast({  // 调用提示框API显示提示内容
+        title: msg,   // 提示框中的文字内容
+        icon: 'none'  // 提示框的图标，none表示没有图标
+      })
+      return           // 提前返回，函数会在这里结束，后面的内容不会执行
+    }
+    // 校验通过时后面的内容才会被执行
+    const formData = {  // 将表单的数据放到一个formData对象中
+      multiple: this.data.multiple,
+      voteTitle: this.data.formTitle,
+      voteDesc: this.data.formDesc,
       optionList: this.data.optionList,
       endDate: this.data.endDate,
-      isAnonymous: this.data.isAnonymous
+      isAnonymous: this.data.isAnonymous,
+      voteList: []
     }
-    // TODO 将formData提交到云端
-    const voteID = 'test'; // 伪造一个数据，作为服务端返回的投票ID
-    wx.redirectTo({
-      url: '/pages/vote/vote?voteID=' + voteID,
+    const db = wx.cloud.database()  // 获得数据库引用
+    db.collection('votes').add({    // 将表单数据添加到votes集合中
+      data: formData
+    }).then(res => {
+      console.log(res._id)  // 从返回值中可以拿到新添加的记录自动生成的ID
+      wx.redirectTo({       // 自动跳转到参与投票页面
+        url: '/pages/vote/vote?voteID=' + res._id,
+      })
+    }).catch(res => {
+      console.error(res)
+      wx.showToast({            // 创建投票失败时，显示提示框提示用户
+        title: '创建投票失败',  // 提示框中的文字内容
+        icon: 'none'            // 提示框的图标，none表示没有图标
+      })
     })
   },
   formReset() {

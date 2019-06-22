@@ -21,22 +21,9 @@ Page({
     this.getVoteStatusFromServer(voteID) // 从服务端获取投票情况
   },
   getVoteDataFromServer(voteID) {
-    if (voteID === 'test') { // 如果投票ID为test，则伪造一些数据
-      /* 以下是伪造的数据 */
-      const voteData = {
-        multiple: false,
-        voteTitle: '测试数据投票标题',
-        voteDesc: '测试数据投票描述',
-        optionList: [
-          '测试数据选项1',
-          '测试数据选项2',
-          '测试数据选项3',
-          '测试数据选项4'
-        ],
-        endDate: '2019-05-18',
-        isAnonymous: false,
-      }
-      /* 以上是伪造的数据 */
+    const db = wx.cloud.database()
+    db.collection('votes').doc(voteID).get().then(res => {
+      const voteData = res.data
       const isExpired = this.checkExpired(voteData.endDate) // 检查投票是否已经过期
       this.setData({ // 将获取的投票信息更新到data对象中
         voteID,
@@ -48,9 +35,13 @@ Page({
         isAnonymous: voteData.isAnonymous,
         isExpired
       })
-    } else {
-      // TODO 从服务端获取投票信息
-    }
+    }).catch(res => {
+      console.error(res)
+      wx.showToast({
+        title: '获取投票失败',
+        icon: 'none'
+      })
+    })
   },
   checkExpired(endDate) {
     const now = new Date()
@@ -97,8 +88,21 @@ Page({
         voteID: this.data.voteID,
         pickedOption: this.data.pickedOption
       }
-      // TODO 将postData数据上传到服务端
-      this.getVoteStatusFromServer(this.data.voteID) // 从服务端获取投票情况
+      wx.cloud.callFunction({
+        name: 'vote',
+        data: {
+          postData
+        }
+      }).then(res => {
+        console.log(res)
+        this.getVoteStatusFromServer(this.data.voteID) // 从服务端获取投票情况
+      }).catch(res => {
+        console.error(res)
+        wx.showToast({
+          title: '投票失败',
+          icon: 'none'
+        })
+      })
     } else { // 实名投票的情况
       const _this = this // 在API接口中的函数中，this会被改变，因此需要提前获取this的值到_this中
       wx.getUserInfo({
@@ -108,40 +112,43 @@ Page({
             userInfo: res.userInfo, // 获取用户信息
             pickedOption: _this.data.pickedOption
           }
-          console.log(postData)
-          // TODO 将postData数据上传到服务端
-          _this.getVoteStatusFromServer(_this.data.voteID) // 从服务端获取投票情况
+          wx.cloud.callFunction({
+            name: 'vote',
+            data: {
+              postData
+            }
+          }).then(res => {
+            console.log(res)
+            _this.getVoteStatusFromServer(_this.data.voteID) // 从服务端获取投票情况
+          }).catch(res => {
+            console.error(res)
+            wx.showToast({
+              title: '投票失败',
+              icon: 'none'
+            })
+          })
         }
       })
     }
   },
   getVoteStatusFromServer(voteID) {
-    if (voteID === 'test') { // 如果投票ID为test，则伪造一些数据
-      /* 以下是伪造的数据 */
-      const voteStatus = {
-        alreadyVoted: false,
-        totalVoteCount: 100,
-        optionStatus: [{
-          count: 25, // 第1个选项的投票数量
-          vote: false
-        }, {
-          count: 35, // 第2个选项的投票数量
-          vote: false
-        }, {
-          count: 10, // 第3个选项的投票数量
-          vote: true // 用户选择了该投票
-        }, {
-          count: 30, // 第4个选项的投票数量
-          vote: false
-        }]
+    wx.cloud.callFunction({  // 使用小程序端API调用云函数
+      name: 'getVoteStatus',  // 指定调用的云函数名
+      data: {
+        voteID  // 将投票ID传到服务端
       }
-      /* 以上是伪造的数据 */
+    }).then(res => {
+      console.log(res)  // 控制台输出服务端返回的结果
       this.setData({ // 将获取的投票情况更新到data对象中
-        voteStatus
+        voteStatus: res.result
       })
-    } else {
-      // TODO 从服务端获取投票情况
-    }
+    }).catch(res => {
+      console.error(res)  // 如果出现异常，控制台输出异常详情
+      wx.showToast({  // 调用提示框API提示用户获取数据失败
+        title: '获取投票数据失败',
+        icon: 'none'
+      })
+    })
   },
   onShareAppMessage() {
     return {
